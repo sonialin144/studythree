@@ -8,47 +8,47 @@ new Vue({
         tracks: [
           {
             name: "a maid costume on my wardrobe",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/1.mp3?raw=true",
           },
           {
             name: "...and I will fall in concrete",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/2.mp3?raw=true",
           },
           {
             name: "dont hurt me anymore",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/3.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/3.mp3?raw=true",
           },
           {
             name: "the m show fanclub",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/4.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/4.mp3?raw=true",
           },
           {
             name: "assisted homicide at 9pm",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/5.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/5.mp3?raw=true",
           },
           {
             name: "i can see them, but you dont...",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/6.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/6.mp3?raw=true",
           },
           {
             name: "恋に落ちた時",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/7.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/7.mp3?raw=true",
           },
           {
             name: "hate me more",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/8.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/8.mp3?raw=true",
           },
           {
             name: "dangerous loneliness",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/8.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/9.mp3?raw=true",
           },
           {
             name: "おそるおそる",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/9.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/10.mp3?raw=true",
           },
           {
             name: "friday night coffee",
-            source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/8.mp3",
+            source: "https://github.com/sonialin144/studythree/blob/9e6a2ace2e42140c62f2f30c8c519160bdf6f486/playlist/11.mp3?raw=true",
           },
         ],
         currentTrack: null,
