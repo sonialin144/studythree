@@ -1,0 +1,27 @@
+
+#cursor {
+    position: fixed;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 5px;
+    pointer-events: none;
+    left: -100px;
+    top: 50%;
+    background-color: white;
+    /* height: 18px; */
+    padding: 2px 8px;
+    box-sizing: content-box;
+    max-width: 64px;
+    z-index: 99999;
+    font-size: 8px;
+    text-align: center;
+    /* line-height: 18px; */
+    box-shadow: 2px 2px #4b6b7c;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  #cursor.hover{
+    transform: scale(2) translateX(-25%) translateY(-25%);
+    background: beige;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }

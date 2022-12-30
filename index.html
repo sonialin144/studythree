@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>milk</title>
+    <link rel="stylesheet" href="src/styles/tooltip.css">
+    <link rel="stylesheet" href="src/styles/todo.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    
+</head>
+<body>
+    <header>
+        <p id="name">name</p>
+        <div class="top-right">
+            <!-- <button class="header-buttons"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M17.721 1.599a.75.75 0 01.279.584v11.29a2.25 2.25 0 01-1.774 2.198l-2.041.442a2.216 2.216 0 01-.938-4.333l2.662-.576a.75.75 0 00.591-.734V6.112l-8 1.73v7.684a2.25 2.25 0 01-1.774 2.2l-2.042.44a2.216 2.216 0 11-.935-4.33l2.659-.574A.75.75 0 007 12.53V4.237a.75.75 0 01.591-.733l9.5-2.054a.75.75 0 01.63.149z" clip-rule="evenodd" />
+              </svg>
+              </button> -->
+
+              <p class="time">0:00</p>
+        </div>
+    </header>
+
+    <canvas class="webgl"></canvas>
+    <script type="module" src="src/main.js"></script>
+
+    <div id="cursor"></div>
+    <!-- <div class="scene-reset-button">reset</div> -->
+    <div class="loader">
+        <img src="images/loading1.png" alt="loading screen window">
+        <div class="loading-bar-outer">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+    <div class="app-wrapper">
+        <div class="welcome">
+            <h2 class="welcome-header">welcome.exe</h2>
+            <p>Hi! Welcome to your virtual workspace.<br>What is your name?</p>
+            <div class="add-name">
+                <input type="text" autocomplete="off" class="username" placeholder="name">
+                <button class="user-enter"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                  </svg>
+                  </button>
+            </div>
+        </div>
+        <div class="todo-container drag tilt" id="tasklist">
+            <!-- <img src="sparkle.png" alt="sparkle animation" class="sparkle"> -->
+            <div class="close" onclick="this.parentNode.style.display='none'; return false;"></div>
+            <h2 class="todo-header">todo.exe</h2>
+            <img src="images/todo1.png" alt="todo-background" class="todo-img">
+    
+            <div class="add-task">
+                <input type="text" autocomplete="off" placeholder="add a new task ..." class="task-input" v-model="tasks.name" @keyup.enter="newItem">
+                <input type="submit" value="+" class="submit-task" title="add task" @click="newItem">
+            </div>
+    
+            <ul class="todo-list">
+                <li class="todo-item" v-for="task in tasks">
+                    <label class="todo-item-label">
+                        <input type="checkbox" class="task-check" v-model="task.checked">
+                        <span>{{task.name}}</span>
+                    </label>
+                    <span class="delete-button" title="delete task" @click="deleteItem(task)">{{task.del}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="about-info-wrapper">
+            <div id="about-button">?</div>
+        </div>
+        <div id="about-info" class="">
+            <p>interact with the items in the room to start customising your workspace :)</p><br>
+            <p>my attempt on building a study and workspace app, inspired by the vaporwave/internet aesthetic</p>
+            <p>a random project i did for fun</p><br>
+            <p>built with html, css, javascript, vue js, and three js</p>
+            <p>room model built in blender</p>
+        </div>
+        <div class="pomodoro-container drag tilt" id="timer">
+            <div class="close" onclick="this.parentNode.style.display='none'; return false;"></div>
+            <h2 class="pomodoro-header">pomodoro.jar</h2>
+            <img src="images/pomo2.png" alt="pomodoro-background" class="pomo-img">
+            <input class="session-title-input" type="text" autocomplete="off" placeholder="session title">
+            <div class="time-left" v-model="time_left">{{time_display}}</div>
+            <div class="start-button" @click="start_timer">{{pause_play}}</div> 
+            <div class="restart-button" @click="restart_timer"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+              </div> 
+            <div class="time-bg"></div>
+            <div class="break-len">
+                <p class="len-text">break length</p>
+                <div class="break-len-text" v-model="break_length">{{break_length}}</div>
+                <div class="decrement-break" @click="decrement_break_len">-</div>
+                <div class="increment-break" @click="increment_break_len">+</div>
+            </div>
+            <div class="session-len">
+                <p class="len-text">session length</p>
+                <div class="session-len-text" v-model="session_length">{{session_length}}</div>
+                <div class="decrement-session" @click="decrement_session_len">-</div>
+                <div class="increment-session" @click="increment_session_len">+</div>
+            </div>
+        </div> 
+        <div class="music-player-container drag tilt" id="player">
+            <h2 class="player-header"></h2>
+            <img src="images/player1.png" alt="player window background" class="player-img">
+            <img src="images/c1.png" class="rotate">
+            <img src="images/c1.png" class="rotate c2">
+
+            <div class="music-buttons">
+                <div class="play-prev" @click="prevTrack">&lt;&lt;</div>
+                <div class="play-music" onclick="this.innerHTML=='play' ? this.innerHTML = 'pause' : this.innerHTML='play'" @click="play">play</div>
+                <div class="play-next" @click="nextTrack">&gt;&gt;</div>
+            </div>
+
+            <div class="music-info">
+                <p>{{currentTrack.name}}</p>
+                <!-- <p>{{currentTrack.artist}}</p> -->
+            </div>
+        </div>
+        <div class="folder drag memes">
+            <img src="images/folder.png" alt="folder image">
+            <p>memes</p>
+        </div>
+        <div class="folder drag secret">
+            <img src="images/folder.png" alt="folder image">
+            <p>dont open</p>
+        </div>
+        <!-- <div class="folder drag secret">
+            <img src="folder.png" alt="folder image">
+            <p>secret</p>
+        </div> -->
+        <div class="folder drag trash">
+            <img src="images/trash.png" alt="folder image">
+            <p>trash</p>
+        </div>
+        <div class="water-container drag tilt" id="water">
+            <!-- <h2 class="water-header"></h2> -->
+            <img src="images/water2.png" alt="water-background" class="water-img">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="drink-button" @click="drink">drink</div>
+            <div class="water-percentage" v-model="curr_water">{{curr_water}}%</div>
+            <div class="close" onclick="this.parentNode.style.display='none'; return false;"></div>
+        </div>
+        <div class="error-container drag" id="error">
+            <!-- <h2 class="water-header"></h2> -->
+            <img src="images/error1.png" alt="error-window-background" class="error-img">
+            <div class="play-button" @click="play">play</div>
+            <div class="study-button" @click="study">study</div>
+        </div>
+        <div class="rick drag">
+            <img src="images/bar.png" alt="window bar" class="bar">
+        <div class="close" onclick="this.parentNode.style.display='none'; return false;"></div>
+            <img src="https://media.giphy.com/media/lgcUUCXgC8mEo/giphy.gif">
+        </div>
+    </div>
+    <div id="image" class="drag">
+        <img src="images/bar.png" alt="window bar" class="bar">
+        <div class="close" onclick="this.parentNode.style.display='none'; return false;"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+
+    <script src="src/todo.js"></script>
+    <script src="src/player.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $( function() { $( ".drag" ).draggable(); });
+    </script>
+</body>
+</html>
